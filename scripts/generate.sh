@@ -99,6 +99,10 @@ echo "RUN perl -MCPAN -e 'install XML::Generator'"
 echo "RUN apt-get update && apt-get -y install lsb-release unzip"
 
 # meteor specifics
+echo "RUN groupadd -r meteor && useradd -ms /bin/bash -g meteor meteor"
+echo "USER meteor"
+echo "WORKDIR /home/meteor"
+
 echo "RUN curl https://install.meteor.com/ | sh"
 
 echo "WORKDIR /home/meteor/app"
