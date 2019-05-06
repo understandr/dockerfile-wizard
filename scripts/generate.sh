@@ -98,6 +98,19 @@ echo "RUN perl -MCPAN -e 'install XML::Generator'"
 # install lsb-release, etc., for testing linux distro
 echo "RUN apt-get update && apt-get -y install lsb-release unzip"
 
+# meteor specifics
+echo "RUN curl https://install.meteor.com/ | sh"
+
+echo "WORKDIR /home/meteor/app"
+echo "ENV HOME /home/meteor"
+echo "ENV PATH $HOME/.meteor:$PATH"
+
+echo "EXPOSE 3000"
+echo "EXPOSE 4000"
+
+echo 'CMD ["meteor","npm","start"]'
+
+# browser
 if [ $BROWSERS = "true" ] ; then
 cat << EOF
 RUN if [ \$(grep 'VERSION_ID="8"' /etc/os-release) ] ; then \\
